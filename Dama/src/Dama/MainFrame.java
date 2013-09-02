@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
      Giocatore Giocatore2 = new Giocatore(Pedina.Colori.NERO);
      
      this.Board = new Scacchiera();
-     this.Board.initScacchiera(Giocatore2,Giocatore1);
+     this.Board.initScacchiera(Giocatore1,Giocatore2);
      
       //Creo un oggetto grafico
      Container contentPane = this.getContentPane();

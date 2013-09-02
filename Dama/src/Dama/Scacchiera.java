@@ -1,14 +1,13 @@
 package Dama;
 
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Scacchiera extends JFrame{ 
     public enum Colori {BIANCO, NERO};
     
-    private Casella[][] scacchiera;
-    private int i = 0;
-    private int j = 0;
+    public Casella[][] scacchiera;
+    private int i;
+    private int j;
 
     //Costruttore
     public Scacchiera() { 
@@ -25,9 +24,9 @@ public class Scacchiera extends JFrame{
             for (j = 0; j < 8; j++) {
                 Casella nuovaCasella;
                 if((j%2==0 && i%2!=0) || (j%2!=0 && i%2==0)) {
-                    nuovaCasella = new Casella(Scacchiera.Colori.BIANCO);
+                    nuovaCasella = new Casella(Colori.BIANCO);
                 } else {
-                    nuovaCasella = new Casella(Scacchiera.Colori.NERO);
+                    nuovaCasella = new Casella(Colori.NERO);
                 }
                     this.scacchiera[i][j] = nuovaCasella;
                     this.scacchiera[i][j].setBounds(i*70+20, j*70+20, 70, 70);
@@ -45,29 +44,40 @@ public class Scacchiera extends JFrame{
         }
     
     public void initScacchiera(Giocatore pGiocatore1, Giocatore pGiocatore2){
-        for (i = 0; i < 8; i++) {
-            for (j = 0; j < 4; j++) {
-                if (isCasellaNera(this.scacchiera[i][j])==true)
-                    for (int p=0; p < 12; p++) {
-                        this.scacchiera[i][j].setPedina(pGiocatore1.Pedine[p]);
-                        this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[p].getColore(pGiocatore1.getPedina().getColore()));
+        //pedine bianche
+        int pb=0;
+        while(pb!=12){
+            for (i = 0; i < 8; i++) {
+                for (j = 7; j > 4; j--) {
+                    if(pb<12){
+                        if (isCasellaNera(this.scacchiera[i][j])==true){
+                                this.scacchiera[i][j].setPedina(pGiocatore1.Pedine[pb]);
+                                this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[pb].getColore(pGiocatore1.getPedina().getColore()));
+                                pb++;
+                        }
                     }
+                }
             }
         }
         
-        for (i = 8; i < 0; i++) {
-            for (j = 0; j < 4; j++) {
-                if (isCasellaNera(this.scacchiera[i][j])==true)
-                    for (int p=0; p < 12; p++) {
-                        this.scacchiera[i][j].setPedina(pGiocatore2.Pedine[p]);
-                        this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[p].getColore(pGiocatore1.getPedina().getColore()));
+        //pedine nere
+        int pn=0;
+        for (i = 0; i < 8; i++) {
+            for (j = 0; j < 3; j++) {
+                if(pn<12){
+                    if (isCasellaNera(this.scacchiera[i][j])==true){
+                            this.scacchiera[i][j].setPedina(pGiocatore2.Pedine[pn]);
+                            this.scacchiera[i][j].setIcon(pGiocatore2.Pedine[pn].getColore(pGiocatore2.getPedina().getColore()));
+                            pn++;
                     }
+                }
             }
         }
+        
     }
     
     public boolean isCasellaNera(Casella pCasella){
-        if (pCasella.equals(Scacchiera.Colori.NERO)){
+        if (pCasella.getColore().equals(Scacchiera.Colori.NERO)){
             return true;
         } else {
             return false;
