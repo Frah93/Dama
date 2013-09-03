@@ -15,9 +15,9 @@ public class Pedina {
     }
     
     public ImageIcon getColore(Colori pColore) {
-        if (pColore== Colori.BIANCO){
+        if (pColore.equals(Colori.BIANCO)){
             return new ImageIcon(getClass().getResource("/Images/pedina_bianca.png"));
-        }else if (pColore== Colori.NERO){
+        }else if (pColore.equals(Colori.NERO)){
             return new ImageIcon(getClass().getResource("/Images/pedina_nera.png"));
         } else {
             return new ImageIcon(getClass().getResource("/Images/pedina_vuota.png"));

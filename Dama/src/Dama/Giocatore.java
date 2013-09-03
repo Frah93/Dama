@@ -2,7 +2,7 @@ package Dama;
 
 public class Giocatore {
     
-    private Pedina Pedine[];
+    public Pedina Pedine[];
     
     public Giocatore(Pedina.Colori pColore){
         this.Pedine = new Pedina[12];
@@ -10,6 +10,11 @@ public class Giocatore {
             this.Pedine[i] = new Pedina(pColore);
         }
     }
+    
+    public Pedina getPedina(){
+        return this.Pedine[0];
+    }
+    
     
     //TODO metodo +PuoiSpostare():Boolean;
     //TODO metodo +Move(Pedina, Casella): Void;

@@ -18,6 +18,7 @@ public class Casella extends JButton{
     public Casella(Scacchiera.Colori pColore) {
         super();
         this.colore = pColore;
+        //this.pedina = new Pedina(Pedina.Colori.NULL);
     }
 
     public Scacchiera.Colori getColore() {
