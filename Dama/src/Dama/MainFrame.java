@@ -1,14 +1,18 @@
 package Dama;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
     
+    private Scacchiera Board;
       
     public MainFrame() {
      super();
+     this.Board = new Scacchiera();
      
       //Creo un oggetto grafico
      Container contentPane = this.getContentPane();
@@ -17,21 +21,31 @@ public class MainFrame extends JFrame {
      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
      this.setResizable(false);
      this.setLayout(null);
-     this.setLocationRelativeTo(null);
      this.setSize(800, 600);
+     this.setLocationRelativeTo(null);
           
      //Creo i bottoni
      JButton btnGioca = new JButton();
      btnGioca.setText("Gioca");
-     btnGioca.setBounds(70, 100, 70, 30);
-        
+     btnGioca.setBounds(50, 500, 95, 30);
+     {
+         btnGioca.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 Board.Set_Visible(true);
+                 setVisible(false);
+             }
+         });
+     }
+     
      JButton btnEsci = new JButton();
      btnEsci.setText("Esci");
-     btnEsci.setBounds(70, 200, 95, 30);
+     btnEsci.setBounds(630, 500, 95, 30);
      
      JButton btnRegole = new JButton();
      btnRegole.setText("Regole");
-     btnRegole.setBounds(70, 100, 95, 30);
+     btnRegole.setBounds(500, 500, 95, 30);
      
     this.add(btnGioca);
     this.add(btnEsci);

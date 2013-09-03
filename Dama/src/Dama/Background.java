@@ -9,9 +9,17 @@ public class Background extends JPanel {
     
     private Image sfondoMenu;
     
-    public Background () {
+    public Background(){
+        this(false);
+    }
+    
+    public Background(boolean choose) {
         this.setSize(800, 600);
-        this.sfondoMenu = Resources.getImage("/Images/SfondoMenu.jpg");
+        if (choose){
+            this.sfondoMenu = Resources.getImage("/Images/ExperimentalChessbaseChessBoard.png");
+        }else{
+            this.sfondoMenu = Resources.getImage("/Images/SfondoMenu.jpg");
+        }
     }
 
     @Override

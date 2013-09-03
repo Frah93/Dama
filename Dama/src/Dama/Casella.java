@@ -4,16 +4,19 @@
  */
 package Dama;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Francesca
  */
-public class Casella {
+public class Casella extends JButton{
     
     private Scacchiera.Colori colore;
     private Pedina pedina;
     
     public Casella(Scacchiera.Colori pColore) {
+        super();
         this.colore = pColore;
     }
 
