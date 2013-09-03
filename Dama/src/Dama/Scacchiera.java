@@ -1,15 +1,14 @@
 package Dama;
 
-import java.awt.GridLayout;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Scacchiera extends JFrame{ 
     public enum Colori {BIANCO, NERO};
-
-    public Casella[][] scacchiera;
-    public int i = 0;
-    public int j = 0;
+    
+    private Casella[][] scacchiera;
+    private int i = 0;
+    private int j = 0;
 
     //Costruttore
     public Scacchiera() { 
@@ -31,9 +30,6 @@ public class Scacchiera extends JFrame{
                 this.add(this.scacchiera[i][j]);
             }
         }
-        
-        
-        
         //TODO metodo Move(Pedina, [i][j])
         //decide se posso spostare, se è una mossa vincente, se trasforma una dama, cambia turno
         
@@ -41,8 +37,20 @@ public class Scacchiera extends JFrame{
         
         Background background = new Background(true);
         this.add(background);
-        
         }
+    
+    public void initScacchiera(){
+        
+    }
+    
+    public boolean isCasellaNera(Casella pCasella){
+        if (pCasella.equals(Scacchiera.Colori.NERO)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
         
     public void Set_Visible(boolean pSet){
         setVisible(pSet);
