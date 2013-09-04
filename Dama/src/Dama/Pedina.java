@@ -3,9 +3,23 @@ package Dama;
 import javax.swing.ImageIcon;
 
 public class Pedina {
-    public static enum Colori {BIANCO,NERO,NULL};
+    public static enum Colori {
+        BIANCO,
+        NERO,
+        NULL;
+        @Override
+        public String toString() {
+          switch(this) {
+            case BIANCO: return "BIANCO";
+            case NERO: return "NERO";
+            case NULL: return "NULL";    
+            default: throw new IllegalArgumentException();
+          }
+        }
+    };
     
     private Colori colore;
+    
     public Pedina(Colori pColore) {
         this.colore = pColore;
     }
