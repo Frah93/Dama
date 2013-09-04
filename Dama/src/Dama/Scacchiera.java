@@ -1,11 +1,13 @@
 package Dama;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class Scacchiera extends JFrame{ 
     public static enum Colori {BIANCO, NERO};
     
-    public Casella[][] scacchiera;
+    public  Casella[][] scacchiera;
     private int i;
     private int j;
 
@@ -31,9 +33,23 @@ public class Scacchiera extends JFrame{
                 } else {
                     this.scacchiera[i][j] = CasellaNera;
                 }
-                    this.scacchiera[i][j].setBounds(i*70+20, j*70+20, 70, 70);
-                    this.scacchiera[i][j].setContentAreaFilled(false);
-                    this.add(this.scacchiera[i][j]);
+                this.scacchiera[i][j].setCoordinate(j,i);
+                this.scacchiera[i][j].setActionCommand(i+","+j);
+                this.scacchiera[i][j].addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        
+                        //GameLogic.ifPedinaCanMove(GameLogic.getCasellaswap(), 
+                        //        scacchiera[ae.getActionCommand().charAt(2)][ae.getActionCommand().charAt(0)]);
+                        
+                        //GameLogic.swapCasella(scacchiera[ae.getActionCommand().charAt(0)][ae.getActionCommand().charAt(02)]);
+                        
+                    }
+                });
+                this.scacchiera[i][j].setBounds(i*70+20, j*70+20, 70, 70);
+                this.scacchiera[i][j].setContentAreaFilled(false);
+                this.add(this.scacchiera[i][j]);
             }
         }
         //TODO metodo Move(Pedina, [i][j])
