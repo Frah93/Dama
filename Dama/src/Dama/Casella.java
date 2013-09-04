@@ -38,6 +38,7 @@ public class Casella extends JButton{
 
     public void setPedina(Pedina pPedina) {
         this.pedina = pPedina;
+        setIcon(pPedina.getImgColore(pPedina.getColore()));
     }
     
     public void setCoordinate(int priga, int pcolonna){

@@ -3,6 +3,7 @@ package Dama;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Scacchiera extends JFrame{ 
     public static enum Colori {BIANCO, NERO};
@@ -29,21 +30,30 @@ public class Scacchiera extends JFrame{
                 Casella CasellaNera = new Casella(Colori.NERO);
                 
                 if((j%2==0 && i%2!=0) || (j%2!=0 && i%2==0)) {
+                    //CasellaBianca.setText(i + "," + j);
                     this.scacchiera[i][j] = CasellaBianca;
                 } else {
+                    //CasellaNera.setText(i + "," + j);
                     this.scacchiera[i][j] = CasellaNera;
                 }
-                this.scacchiera[i][j].setCoordinate(j,i);
+                
+                //this.scacchiera[i][j].setCoordinate(j,i);
                 this.scacchiera[i][j].setActionCommand(i+","+j);
                 this.scacchiera[i][j].addActionListener(new ActionListener() {
 
                     @Override
                     public void actionPerformed(ActionEvent ae) {
                         
-                        //GameLogic.ifPedinaCanMove(GameLogic.getCasellaswap(), 
-                        //        scacchiera[ae.getActionCommand().charAt(2)][ae.getActionCommand().charAt(0)]);
+                        //System.out.print(ae.getActionCommand());
                         
-                        //GameLogic.swapCasella(scacchiera[ae.getActionCommand().charAt(0)][ae.getActionCommand().charAt(02)]);
+                        //JOptionPane.showMessageDialog(null, ae.getActionCommand());
+                        
+                        GameLogic.ifPedinaCanMove(GameLogic.getCasellaswap(), 
+                                scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
+                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        
+                        GameLogic.swapCasella(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
+                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
                         
                     }
                 });
@@ -67,7 +77,7 @@ public class Scacchiera extends JFrame{
                 if(pb<12){
                     if (isCasellaNera(this.scacchiera[i][j])==true){
                             this.scacchiera[i][j].setPedina(pGiocatore1.Pedine[pb]);
-                            this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[pb].getColore(pGiocatore1.getPedina().getColore()));
+                            //this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[pb].getColore(pGiocatore1.getPedina().getColore()));
                             pb++;
                     }
                 }
@@ -82,7 +92,7 @@ public class Scacchiera extends JFrame{
                 if(pn<12){
                     if (isCasellaNera(this.scacchiera[i][j])==true){
                             this.scacchiera[i][j].setPedina(pGiocatore2.Pedine[pn]);
-                            this.scacchiera[i][j].setIcon(pGiocatore2.Pedine[pn].getColore(pGiocatore2.getPedina().getColore()));
+                            //this.scacchiera[i][j].setIcon(pGiocatore2.Pedine[pn].getColore(pGiocatore2.getPedina().getColore()));
                             pn++;
                     }
                 }
@@ -90,6 +100,7 @@ public class Scacchiera extends JFrame{
         }
         
     }
+    
     
     public boolean isCasellaNera(Casella pCasella){
         if (pCasella.getColore().equals(Scacchiera.Colori.NERO)){

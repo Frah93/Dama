@@ -9,7 +9,7 @@ public class GameLogic {
 
     private Giocatore activePlayer;
     
-    private static Casella Casellaswap;
+    public static Casella Casellaswap;
     
     public GameLogic(Giocatore pPlayer1, Giocatore pPlayer2) {
         this.player1 = pPlayer1;
@@ -34,22 +34,24 @@ public class GameLogic {
         return this.activePlayer;*/
     }
     
-    public void swapCasella(Casella pCasella){
+    public static void swapCasella(Casella pCasella){
         Casellaswap = pCasella;
     }
     
-    public Casella getCasellaswap(){
+    public static Casella getCasellaswap(){
         return Casellaswap;
     }
     
     public static void ifPedinaCanMove(Casella pCasellaSelect, Casella pCasellaSuccessiva){
-        if(!pCasellaSelect.getPedina().equals(Pedina.Colori.NULL) && 
-           (pCasellaSuccessiva.getPedina().equals(Pedina.Colori.NULL) || Board.isCasellaNera(pCasellaSuccessiva)) ){
-                if(pCasellaSuccessiva.getRiga()>pCasellaSelect.getRiga()){
-                    pCasellaSuccessiva.setPedina(pCasellaSelect.getPedina());
-                    pCasellaSelect.setPedina(new Pedina(Pedina.Colori.NULL));
-                } else { }
-        } else { }
+        if(!pCasellaSelect.equals(pCasellaSuccessiva)){
+            if(!pCasellaSelect.getPedina().equals(Pedina.Colori.NULL) && 
+               (pCasellaSuccessiva.getPedina().equals(Pedina.Colori.NULL) && Board.isCasellaNera(pCasellaSuccessiva)) ){
+                    //if(pCasellaSuccessiva.getRiga()>pCasellaSelect.getRiga()){
+                        pCasellaSuccessiva.setPedina(pCasellaSelect.getPedina());
+                        pCasellaSelect.setPedina(new Pedina(Pedina.Colori.NULL));
+                    //}
+            }
+        }
     }
     
     
