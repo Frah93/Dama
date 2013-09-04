@@ -23,13 +23,14 @@ public class Scacchiera extends JFrame{
         
         for (i = 0; i < 8; i++) {
             for (j = 0; j < 8; j++) {
-                Casella nuovaCasella;
+                Casella CasellaBianca = new Casella(Colori.BIANCO);
+                Casella CasellaNera = new Casella(Colori.NERO);
+                
                 if((j%2==0 && i%2!=0) || (j%2!=0 && i%2==0)) {
-                    nuovaCasella = new Casella(Colori.BIANCO);
+                    this.scacchiera[i][j] = CasellaBianca;
                 } else {
-                    nuovaCasella = new Casella(Colori.NERO);
+                    this.scacchiera[i][j] = CasellaNera;
                 }
-                    this.scacchiera[i][j] = nuovaCasella;
                     this.scacchiera[i][j].setBounds(i*70+20, j*70+20, 70, 70);
                     this.scacchiera[i][j].setContentAreaFilled(false);
                     this.add(this.scacchiera[i][j]);
@@ -37,8 +38,6 @@ public class Scacchiera extends JFrame{
         }
         //TODO metodo Move(Pedina, [i][j])
         //decide se posso spostare, se è una mossa vincente, se trasforma una dama, cambia turno
-        
-        //Genera in modo alternato caselle bianche e nere
         
         Background background = new Background(true);
         this.add(background);
@@ -84,7 +83,6 @@ public class Scacchiera extends JFrame{
         }
     }
     
-        
     public void Set_Visible(boolean pSet){
         setVisible(pSet);
     }

@@ -8,20 +8,21 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
     
-    public static Scacchiera Board;
-    private Regole Rule = new Regole();
+    private GameLogic Logic;
+    private Regole Rule;
     
     public MainFrame() {
      super();
+     
+     //instanziamo le regole
+     this.Rule = new Regole();
+     
      //definiamo i due giocatori
      Giocatore Giocatore1 = new Giocatore(Pedina.Colori.BIANCO);
      Giocatore Giocatore2 = new Giocatore(Pedina.Colori.NERO);
-     //definiamo la scacchiera e disponiamo le pedine dei due giocatori
-     Board = new Scacchiera();
-     Board.initScacchiera(Giocatore1,Giocatore2);
      
-     //Creo un oggetto grafico
-     Container contentPane = this.getContentPane();
+     //instanziamo il gioco
+     this.Logic = new GameLogic(Giocatore1, Giocatore2);
      
      this.setTitle("Dama");
      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,7 +40,7 @@ public class MainFrame extends JFrame {
 
              @Override
              public void actionPerformed(ActionEvent ae) {
-                 Board.Set_Visible(true);
+                 Logic.setGameBoardVisible(true);
                  setVisible(false);
              }
          });
