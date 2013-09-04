@@ -8,18 +8,19 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame {
     
-    private Scacchiera Board;
-      
+    public static Scacchiera Board;
+    private Regole Rule = new Regole();
+    
     public MainFrame() {
      super();
-     
+     //definiamo i due giocatori
      Giocatore Giocatore1 = new Giocatore(Pedina.Colori.BIANCO);
      Giocatore Giocatore2 = new Giocatore(Pedina.Colori.NERO);
+     //definiamo la scacchiera e disponiamo le pedine dei due giocatori
+     Board = new Scacchiera();
+     Board.initScacchiera(Giocatore1,Giocatore2);
      
-     this.Board = new Scacchiera();
-     this.Board.initScacchiera(Giocatore1,Giocatore2);
-     
-      //Creo un oggetto grafico
+     //Creo un oggetto grafico
      Container contentPane = this.getContentPane();
      
      this.setTitle("Dama");
@@ -47,10 +48,29 @@ public class MainFrame extends JFrame {
      JButton btnEsci = new JButton();
      btnEsci.setText("Esci");
      btnEsci.setBounds(630, 500, 95, 30);
+     {
+         btnEsci.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 System.exit(0);
+             }
+         });
+     }
      
      JButton btnRegole = new JButton();
      btnRegole.setText("Regole");
      btnRegole.setBounds(500, 500, 95, 30);
+     {
+         btnRegole.addActionListener(new ActionListener() {
+
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 Rule.Set_Visible(true);
+             }
+         });
+     }
+     
      
     this.add(btnGioca);
     this.add(btnEsci);

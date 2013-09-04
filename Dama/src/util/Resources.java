@@ -2,13 +2,11 @@ package util;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.CodeSource;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
 import javax.imageio.ImageIO;
 import util.sound.Sound;
 

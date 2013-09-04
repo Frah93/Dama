@@ -4,7 +4,6 @@ public class GameLogic {
     
    private Giocatore player1;
    private Giocatore player2;
-   private Scacchiera PianoDiGioco;
    
    private Giocatore activePlayer;
     

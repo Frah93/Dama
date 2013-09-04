@@ -3,7 +3,7 @@ package Dama;
 import javax.swing.JFrame;
 
 public class Scacchiera extends JFrame{ 
-    public enum Colori {BIANCO, NERO};
+    public static enum Colori {BIANCO, NERO};
     
     public Casella[][] scacchiera;
     private int i;
@@ -17,6 +17,7 @@ public class Scacchiera extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
+        setVisible(false);
         
         this.scacchiera = new Casella[8][8];
         
@@ -46,19 +47,18 @@ public class Scacchiera extends JFrame{
     public void initScacchiera(Giocatore pGiocatore1, Giocatore pGiocatore2){
         //pedine bianche
         int pb=0;
-        while(pb!=12){
-            for (i = 0; i < 8; i++) {
-                for (j = 7; j > 4; j--) {
-                    if(pb<12){
-                        if (isCasellaNera(this.scacchiera[i][j])==true){
-                                this.scacchiera[i][j].setPedina(pGiocatore1.Pedine[pb]);
-                                this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[pb].getColore(pGiocatore1.getPedina().getColore()));
-                                pb++;
-                        }
+        for (i = 0; i < 8; i++) {
+            for (j = 7; j > 4; j--) {
+                if(pb<12){
+                    if (isCasellaNera(this.scacchiera[i][j])==true){
+                            this.scacchiera[i][j].setPedina(pGiocatore1.Pedine[pb]);
+                            this.scacchiera[i][j].setIcon(pGiocatore1.Pedine[pb].getColore(pGiocatore1.getPedina().getColore()));
+                            pb++;
                     }
                 }
             }
         }
+        
         
         //pedine nere
         int pn=0;

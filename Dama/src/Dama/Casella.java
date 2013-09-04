@@ -12,20 +12,20 @@ import javax.swing.JButton;
  */
 public class Casella extends JButton{
     
-    private Dama.Scacchiera.Colori colore;
+    private Scacchiera.Colori colore;
     private Pedina pedina;
     
-    public Casella(Dama.Scacchiera.Colori pColore) {
+    public Casella(Scacchiera.Colori pColore) {
         super();
         this.colore = pColore;
         this.pedina = new Pedina(Pedina.Colori.NULL);
     }
 
-    public Dama.Scacchiera.Colori getColore() {
+    public Scacchiera.Colori getColore() {
         return colore;
     }
 
-    public void setColore(Dama.Scacchiera.Colori colore) {
+    public void setColore(Scacchiera.Colori colore) {
         this.colore = colore;
     }
 
