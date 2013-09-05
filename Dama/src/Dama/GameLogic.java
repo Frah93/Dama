@@ -9,7 +9,7 @@ public class GameLogic {
 
     private Giocatore activePlayer;
     
-    public static Casella Casellaswap;
+    private static Casella Casellaorigin,Casellaswap1,Casellaswap2;
     
     public GameLogic(Giocatore pPlayer1, Giocatore pPlayer2) {
         this.player1 = pPlayer1;
@@ -19,7 +19,13 @@ public class GameLogic {
         Board = new Scacchiera();
         Board.initScacchiera(player1,player2);
         
-        this.Casellaswap = new Casella(Scacchiera.Colori.BIANCO);
+        //inizia giocatore 1 con i bianchi
+        this.activePlayer = this.player1;
+        
+        Casellaorigin = new Casella(Scacchiera.Colori.NERO);
+        Casellaswap1 = new Casella(Scacchiera.Colori.NERO);
+        Casellaswap2 = new Casella(Scacchiera.Colori.NERO);
+        
         /*try {
             this.PianoDiGioco = new Scacchiera(8, 8);
         } catch (Exception ex) {
@@ -33,28 +39,40 @@ public class GameLogic {
     public Giocatore getActivePlayer() {
         return this.activePlayer;*/
     }
-    //Verifica quali mosse sono ammissibili
+    //Verifica quali mosse sono ammissibili nel movimento di una pedina
     //TODO: La gestione del colore sara' gestita dal player active
     public static void ifPedinaCanMove(Casella pCasellaSelect){
+        //nel caso in cui premo una casella con pedina nera/bianca
         if(!pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NULL)){
             //Se ho selezionato una pedina nera
             if(pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NERO)){
                 //Controlla se ho selezionato l'ultima pedina a sinistra
                 if(pCasellaSelect.getColonna()==0){
                     if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        //evidenzia le mosse ammissibili
                         Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                            //oltre ad evidenziarla deve salvarla in memoria per poter accertare la previsione di una possibile mossa
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1];
                     }
                 //Controlla se ho selezionato l'ultima pedina a destra
                 } else if(Board.scacchiera[0].length-1==pCasellaSelect.getColonna()){
                     if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
                         Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1];
                     }
                 } else {
                     if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
                         Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1];
+                        
                     }
                     if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
-                            Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                        Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1];
                     }
             }
             //Se ho selezionato una pedina bianca
@@ -63,20 +81,50 @@ public class GameLogic {
                 if(pCasellaSelect.getColonna()==0){
                     if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
                         Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1];
                     }
                 //Controlla se ho selezionato l'ultima pedina a destra
                 } else if(Board.scacchiera[0].length-1==pCasellaSelect.getColonna()){
                     if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
                         Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1];
                     }
                 } else {
                     if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
                         Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1];
                     }
                     if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
                         Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                            Casellaorigin = pCasellaSelect;
+                            Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1];
                     }
                 }
+            }
+        } else {
+            //nel caso in cui sto schiacciando una casella che ho previsto per lo spostamento
+            if(pCasellaSelect.getPedina().equals(Casellaswap1.getPedina())){
+                //sposto la pedina nella casella successiva
+                Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].
+                        setPedina(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getPedina());
+                //cancella la precedente
+                Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].
+                        setPedina(new Pedina(Pedina.Colori.NULL));
+                //deseleziona l'altra possibilita' di movimento
+                Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].setContentAreaFilled(false);
+                
+            } else if (pCasellaSelect.getPedina().equals(Casellaswap2.getPedina())){
+                //sposto la pedina nella casella successiva
+                Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].
+                        setPedina(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getPedina());
+                //cancella la precedente
+                Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].
+                        setPedina(new Pedina(Pedina.Colori.NULL));
+                //deseleziona l'altra possibilita' di movimento
+                Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].setContentAreaFilled(false);
             }
         }
     }
