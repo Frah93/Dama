@@ -1,9 +1,5 @@
 package Dama;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -17,6 +13,8 @@ public class Regole extends JFrame{
         setLayout(null);
         setLocationRelativeTo(null);
         setVisible(false);
+        
+        JLabel testo = new JLabel("Qui andranno le regole\n e le informazioni su come si gioca\n a dama.");
         
         //BufferedImage Dama = ImageIO.read(getClass().getResource("/Images/Ritratto di dama.jpg"));
         //JLabel Dama_label = new JLabel(Dama);
