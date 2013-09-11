@@ -158,7 +158,8 @@ public class GameLogic {
                                 Casellatarget = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaTearget];
                     }
                 //Controlla se ho selezionato l'ultima o la penultima pedina a destra
-                }else if(Board.scacchiera[0].length-2<=pCasellaSelect.getColonna()){
+                    //BUG SCOVATO QUI
+                }else if(Board.scacchiera[0].length-2==pCasellaSelect.getColonna() || Board.scacchiera[0].length-1==pCasellaSelect.getColonna()){
                     //Controllo una possibile mangiata
                     if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaTearget].getPedina().getColore().equals(Target.getColore()) &&
                         Board.scacchiera[pCasellaSelect.getColonna()-2][pCasellaSelect.getRiga()+RilevaPedinaEat].getPedina().getColore().equals(Pedina.Colori.NULL) ){
