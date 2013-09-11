@@ -56,13 +56,16 @@ public class Scacchiera extends JFrame{
                         
                         //Controllo per la mangiata
                         //i Due controlli vanno differanziati
-                        GameLogic.ifPedinaCanEat(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
-                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        
                         //Controllo per la mossa
                         GameLogic.ifPedinaCanMove(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
                                 [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        //controllo per la mangiata
+                        GameLogic.ifPedinaCanEat(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
+                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
                         
                         //Controllo per la denominazione delle caselle
+                        
                         scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
                                 [Character.getNumericValue(ae.getActionCommand().charAt(2))].setContentAreaFilled(false);
                         
