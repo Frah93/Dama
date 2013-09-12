@@ -3,6 +3,7 @@ package Dama;
 import javax.swing.ImageIcon;
 
 public class Pedina {
+    
     public static enum Colori {
         BIANCO,
         NERO,
