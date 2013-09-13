@@ -104,11 +104,7 @@ public class GameLogic {
                 Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].setContentAreaFilled(false);
                 
                 //Scambio turni tra giocatori
-                if(activePlayer.equals(player1)){
-                    activePlayer = player2;
-                } else {
-                    activePlayer = player1;
-                }
+                CambiaTurno();
                 
             } else if (pCasellaSelect.getPedina().equals(Casellaswap2.getPedina()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap2.getRiga()){
                 //sposto la pedina nella casella successiva
@@ -122,11 +118,7 @@ public class GameLogic {
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].setContentAreaFilled(false);
                 
                 //Scambio turni tra giocatori
-                if(activePlayer.equals(player1)){
-                    activePlayer = player2;
-                } else {
-                    activePlayer = player1;
-                }
+                CambiaTurno();
             }
         }
     }
@@ -206,11 +198,7 @@ public class GameLogic {
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].setContentAreaFilled(false);
                 //Scambio turni tra giocatori
-                if(activePlayer.equals(player1)){
-                    activePlayer = player2;
-                } else {
-                    activePlayer = player1;
-                }
+                CambiaTurno();
                 
             } else if (pCasellaSelect.getPedina().equals(Casellaswap2.getPedina()) && 
                     Casellaorigin.getRiga()+RilevaPedinaEat==Casellaswap2.getRiga()){
@@ -227,15 +215,11 @@ public class GameLogic {
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].setContentAreaFilled(false);
                 //Scambio turni tra giocatori
-                if(activePlayer.equals(player1)){
-                    activePlayer = player2;
-                } else {
-                    activePlayer = player1;
-                }
+                CambiaTurno();
             }
         }
     }
-    
+    /*
     //Funzione che pulisce ogni tipo di suggerimento precedente 
     public static void ClearHint(){
         for (int i=0; i< Board.scacchiera.length;i++){
@@ -243,12 +227,20 @@ public class GameLogic {
                 Board.scacchiera[i][j].setContentAreaFilled(false);
             }
         }
-    }
+    }*/
     
     public void setGameBoardVisible(boolean pset){
         Board.Set_Visible(pset);
     }
 
+    public static void CambiaTurno(){
+        if(activePlayer.equals(player1)){
+            activePlayer = player2;
+        } else {
+            activePlayer = player1;
+        }
+    }
+    
     public static void setActivePlayer(Giocatore pactivePlayer) {
         activePlayer = pactivePlayer;
     }

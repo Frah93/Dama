@@ -14,12 +14,14 @@ public class Casella extends JButton{
     
     private Scacchiera.Colori colore;
     private Pedina pedina;
+    private Dama dama;
     private int colonna,riga;
     
     public Casella(Scacchiera.Colori pColore) {
         super();
         this.colore = pColore;
         this.pedina = new Pedina(Pedina.Colori.NULL);
+        this.dama = new Dama(Pedina.Colori.NULL);
         this.riga = 0;
         this.colonna = 0;
     }
