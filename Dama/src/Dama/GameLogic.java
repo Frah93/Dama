@@ -245,9 +245,9 @@ public class GameLogic {
     //Trasforma una pedina in una dama
     public static void CanBeDama(Casella pCasella){
         //controlla se la casella non ha ancora una dama
-        if(!pCasella.getDama().getColore().equals(Dama.Colori.NULL)){
+        if(pCasella.getDama().getColore().equals(Dama.Colori.NULL)){
             //capisce su quale versante va fatta la dama
-            if(pCasella.getDama().getColore().equals(Dama.Colori.BIANCO)){
+            if(pCasella.getPedina().getColore().equals(Pedina.Colori.BIANCO)){
                 //Capisce se sono arrivato in fondo alla scacchiera
                 if(pCasella.getRiga()==0){
                     Board.scacchiera[pCasella.getColonna()][pCasella.getRiga()].setDama(new Dama(pCasella.getPedina().getColore()));
