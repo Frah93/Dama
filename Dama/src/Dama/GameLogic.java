@@ -103,6 +103,9 @@ public class GameLogic {
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].setContentAreaFilled(false);
                 
+                //controlla se si puo fare dama
+                CanBeDama(Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()]);
+                
                 //Scambio turni tra giocatori
                 CambiaTurno();
                 
@@ -116,6 +119,9 @@ public class GameLogic {
                         setPedina(new Pedina(Pedina.Colori.NULL));
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].setContentAreaFilled(false);
+                
+                //controlla se si puo fare dama
+                CanBeDama(Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()]);
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
@@ -197,6 +203,10 @@ public class GameLogic {
                 Casellatarget = new Casella(Scacchiera.Colori.NERO);
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].setContentAreaFilled(false);
+                
+                //controlla se si puo fare dama
+                CanBeDama(Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()]);
+                
                 //Scambio turni tra giocatori
                 CambiaTurno();
                 
@@ -214,6 +224,10 @@ public class GameLogic {
                 Casellatarget = new Casella(Scacchiera.Colori.NERO);
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].setContentAreaFilled(false);
+                
+                //controlla se si puo fare dama
+                CanBeDama(Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()]);
+                
                 //Scambio turni tra giocatori
                 CambiaTurno();
             }
@@ -228,6 +242,23 @@ public class GameLogic {
             }
         }
     }*/
+    //Trasforma una pedina in una dama
+    public static void CanBeDama(Casella pCasella){
+        //controlla se la casella non ha ancora una dama
+        if(!pCasella.getDama().getColore().equals(Dama.Colori.NULL)){
+            //capisce su quale versante va fatta la dama
+            if(pCasella.getDama().getColore().equals(Dama.Colori.BIANCO)){
+                //Capisce se sono arrivato in fondo alla scacchiera
+                if(pCasella.getRiga()==0){
+                    Board.scacchiera[pCasella.getColonna()][pCasella.getRiga()].setDama(new Dama(pCasella.getPedina().getColore()));
+                }
+            } else {
+                if(pCasella.getRiga()==Board.scacchiera[0].length-1){
+                    Board.scacchiera[pCasella.getColonna()][pCasella.getRiga()].setDama(new Dama(pCasella.getPedina().getColore()));
+                }
+            }
+        }
+    }
     
     public void setGameBoardVisible(boolean pset){
         Board.Set_Visible(pset);

@@ -37,9 +37,20 @@ public class Casella extends JButton{
     public Pedina getPedina() {
         return this.pedina;
     }
+    
+    public Dama getDama() {
+        return this.dama;
+    }
+    
+    public void setDama(Dama pDama){
+        this.pedina = new Pedina(Pedina.Colori.NULL);
+        this.dama = pDama;
+        setIcon(pDama.getImgColore(pDama.getColore()));
+    }
 
     public void setPedina(Pedina pPedina) {
         this.pedina = pPedina;
+        this.dama = new Dama(Dama.Colori.NULL);
         setIcon(pPedina.getImgColore(pPedina.getColore()));
     }
     
