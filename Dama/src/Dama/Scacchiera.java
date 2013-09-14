@@ -57,10 +57,7 @@ public class Scacchiera extends JFrame{
 
                     @Override
                     public void actionPerformed(ActionEvent ae) {
-                        
-                        //Controllo per la mangiata
-                        //i Due controlli vanno differanziati
-                        
+                        //Controlli Pedina
                         //Controllo per la mossa
                         GameLogic.ifPedinaCanMove(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
                                 [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
@@ -68,8 +65,15 @@ public class Scacchiera extends JFrame{
                         GameLogic.ifPedinaCanEat(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
                                 [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
                         
-                        //Controllo per la denominazione delle caselle
+                        //Controlli Dama
+                        //Controllo per la mossa
+                        GameLogic.ifDamaCanMove(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
+                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        //controllo per la mangiata
+                        GameLogic.ifDamaCanEat(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
+                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
                         
+                        //Controllo per la denominazione delle caselle
                         scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
                                 [Character.getNumericValue(ae.getActionCommand().charAt(2))].setContentAreaFilled(false);
                         

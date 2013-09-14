@@ -36,7 +36,6 @@ public class GameLogic {
     }
     
     //Verifica quali mosse sono ammissibili nel movimento di una pedina
-    //TODO: La gestione del colore sara' gestita dal player active
     public static void ifPedinaCanMove(Casella pCasellaSelect){
         //nel caso in cui premo una casella con pedina nera/bianca
         if(!pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NULL)){
@@ -129,8 +128,7 @@ public class GameLogic {
         }
     }
     
-    //Controllo se si puo' mangiare
-    //ToDo: la scelta del colore avverra' in base al giocatore ed al suo avversario (molto molto meno codice)
+    //Controllo se si puo' mangiare con una pedina
     public static void ifPedinaCanEat(Casella pCasellaSelect){
         //nel caso in cui premo una casella con pedina nera/bianca
         if(!pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NULL)){
@@ -242,6 +240,17 @@ public class GameLogic {
             }
         }
     }
+    
+    //Verifica quali mosse sono ammissibili nel movimento di una Dama
+    public static void ifDamaCanMove(Casella pCasellaSelect){
+        
+    }
+    
+    //Controllo se si puo' mangiare con una dama
+    public static void ifDamaCanEat(Casella pCasellaSelect){
+        
+    }
+    
     /*
     //Funzione che pulisce ogni tipo di suggerimento precedente 
     public static void ClearHint(){
