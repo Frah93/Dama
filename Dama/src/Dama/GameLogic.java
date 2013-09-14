@@ -48,8 +48,8 @@ public class GameLogic {
                         RilevaPedinaMove = 1;
                     }
                 //Controlla se sono arrivato in fondo alla scacchiera
-                if((activePlayer.getPedina().getColore().equals(Pedina.Colori.BIANCO) && pCasellaSelect.getRiga()!=0) ||
-                        (activePlayer.getPedina().getColore().equals(Pedina.Colori.NERO) && pCasellaSelect.getRiga()!=Board.scacchiera[0].length-1) ){
+                if((pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.BIANCO) && pCasellaSelect.getRiga()!=0) ||
+                        (pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NERO) && pCasellaSelect.getRiga()!=Board.scacchiera[0].length-1) ){
                     //Controlla se ho selezionato l'ultima pedina a sinistra
                     if(pCasellaSelect.getColonna()==0){
                         if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
@@ -78,21 +78,25 @@ public class GameLogic {
                                 Casellaorigin = pCasellaSelect;
                                 Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove];
                         }
-                }
+                }//
             }
             //Se ho selezionato una pedina avversaria
             } else {
                 JOptionPane.showMessageDialog(null, "Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
             }
         } else {
+            //nel caso ho riselezionato la stessa casella
+            if(Casellaorigin.getPedina().getColore().equals(Pedina.Colori.NULL)){
             //nel caso in cui sto schiacciando una casella che ho previsto per lo spostamento DI UNA CASELLA
-            if(pCasellaSelect.getPedina().equals(Casellaswap1.getPedina()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap1.getRiga()){
+            }else if(pCasellaSelect.getPedina().equals(Casellaswap1.getPedina()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap1.getRiga()){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].
                         setPedina(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getPedina());
                 //cancella la precedente
                 Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].
                         setPedina(new Pedina(Pedina.Colori.NULL));
+                //smemorizza la pedina origine
+                Casellaorigin = new Casella(Scacchiera.Colori.NERO);
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].setContentAreaFilled(false);
                 
@@ -110,6 +114,9 @@ public class GameLogic {
                 //cancella la precedente
                 Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].
                         setPedina(new Pedina(Pedina.Colori.NULL));
+                //smemorizza la pedina origine
+                Casellaorigin = new Casella(Scacchiera.Colori.NERO);
+                
                 //deseleziona l'altra possibilita' di movimento
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].setContentAreaFilled(false);
                 
@@ -137,8 +144,8 @@ public class GameLogic {
                         Target = new Pedina(Pedina.Colori.BIANCO);
                     }
             //Controlla se sono arrivato in fondo (alla penultima) alla scacchiera
-            if((activePlayer.getPedina().getColore().equals(Pedina.Colori.BIANCO) && pCasellaSelect.getRiga()!=1) ||
-                    (activePlayer.getPedina().getColore().equals(Pedina.Colori.NERO) && pCasellaSelect.getRiga()!=Board.scacchiera[0].length-2) ){
+            if((pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.BIANCO) && pCasellaSelect.getRiga()!=1) ||
+                    (pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NERO) && pCasellaSelect.getRiga()!=Board.scacchiera[0].length-2) ){
                 //Se ho selezionato una pedina bianca
                 if(pCasellaSelect.getPedina().getColore().equals(getActivePlayer().getPedina().getColore())){
                     //Controlla se ho selezionato l'ultima o la penultima pedina a sinistra
@@ -184,8 +191,10 @@ public class GameLogic {
             
             }
         } else {
+            //nel caso ho riselezionato la stessa casella
+            if(Casellaorigin.getPedina().getColore().equals(Pedina.Colori.NULL)){
             //nel caso in cui sto schiacciando una casella che ho previsto per lo spostamento e la mangiata
-            if(pCasellaSelect.getPedina().equals(Casellaswap1.getPedina()) && 
+            }else if(pCasellaSelect.getPedina().equals(Casellaswap1.getPedina()) && 
                     Casellaorigin.getRiga()+RilevaPedinaEat==Casellaswap1.getRiga()){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].
@@ -193,6 +202,8 @@ public class GameLogic {
                 //cancella la precedente
                 Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].
                         setPedina(new Pedina(Pedina.Colori.NULL));
+                //smemorizza la pedina origine
+                Casellaorigin = new Casella(Scacchiera.Colori.NERO);
                 //Cancella la pedina mangiata
                 Board.scacchiera[Casellatarget.getColonna()][Casellatarget.getRiga()].
                         setPedina(new Pedina(Pedina.Colori.NULL));
@@ -214,6 +225,8 @@ public class GameLogic {
                 //cancella la precedente
                 Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].
                         setPedina(new Pedina(Pedina.Colori.NULL));
+                //smemorizza la pedina origine
+                Casellaorigin = new Casella(Scacchiera.Colori.NERO);
                 //Cancella la pedina mangiata
                 Board.scacchiera[Casellatarget.getColonna()][Casellatarget.getRiga()].
                         setPedina(new Pedina(Pedina.Colori.NULL));
