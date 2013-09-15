@@ -11,7 +11,7 @@ public class GameLogic {
 
     private static Giocatore activePlayer;
     
-    private static Casella Casellaorigin,Casellatarget,Casellaswap1,Casellaswap2;
+    private static Casella Casellaorigin,Casellatarget,Casellaswap1,Casellaswap2,Casellaswap3,Casellaswap4;
     private static int RilevaPedinaMove,RilevaPedinaEat,RilevaPedinaTearget; //impone la visione della mossa relativa alla posizione del relativo player con la scacchiera 
     private static Pedina Target;
     
@@ -243,7 +243,30 @@ public class GameLogic {
     
     //Verifica quali mosse sono ammissibili nel movimento di una Dama
     public static void ifDamaCanMove(Casella pCasellaSelect){
-        
+        //controlla se ho selezionato una dama
+        if(!pCasellaSelect.getDama().getColore().equals(Dama.Colori.NULL)){
+            
+            //funziopne generica di movimento
+            if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].equals(Dama.Colori.NULL) || 
+                    Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].equals(Pedina.Colori.NULL)){
+                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1];
+            } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].equals(Dama.Colori.NULL) || 
+                    Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].equals(Pedina.Colori.NULL)){
+                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1];
+            } if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].equals(Dama.Colori.NULL) || 
+                    Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].equals(Pedina.Colori.NULL)){
+                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                Casellaswap3 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1];
+            } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].equals(Dama.Colori.NULL) || 
+                    Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].equals(Pedina.Colori.NULL)){
+                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                Casellaswap4 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1];
+            }
+        } else {
+            
+        }
     }
     
     //Controllo se si puo' mangiare con una dama
