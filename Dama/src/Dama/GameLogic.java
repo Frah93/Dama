@@ -245,24 +245,60 @@ public class GameLogic {
     public static void ifDamaCanMove(Casella pCasellaSelect){
         //controlla se ho selezionato una dama
         if(!pCasellaSelect.getDama().getColore().equals(Dama.Colori.NULL)){
-            
-            //funziopne generica di movimento
-            if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].equals(Dama.Colori.NULL) || 
-                    Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].equals(Pedina.Colori.NULL)){
-                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
-                Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1];
-            } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].equals(Dama.Colori.NULL) || 
-                    Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].equals(Pedina.Colori.NULL)){
-                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
-                Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1];
-            } if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].equals(Dama.Colori.NULL) || 
-                    Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].equals(Pedina.Colori.NULL)){
-                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
-                Casellaswap3 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1];
-            } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].equals(Dama.Colori.NULL) || 
-                    Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].equals(Pedina.Colori.NULL)){
-                Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
-                Casellaswap4 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1];
+            if(pCasellaSelect.getDama().getColore().equals(activePlayer.getDama().getColore())){
+                //controllo se sono sulla parte inferiore della scacchiera
+                if(pCasellaSelect.getRiga()==Board.scacchiera[0].length-1){
+                    if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1];
+                        Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                    } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1];
+                        Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                    }
+                //controlla se sono nella parte superiore della scacchiera
+                } else if(pCasellaSelect.getRiga()==0){
+                    if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1];
+                        Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                    } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1];
+                        Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                        
+                    }
+                }else{
+                    //funziopne generica di movimento
+                    if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1];
+                        Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                    } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1];
+                        Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+1].setContentAreaFilled(true);
+                    } if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap3 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1];
+                        Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                    } if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].getDama().getColore().equals(Dama.Colori.NULL) && 
+                            Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        Casellaorigin = Board.scacchiera[pCasellaSelect.getColonna()][pCasellaSelect.getRiga()];
+                        Casellaswap4 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1];
+                        Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()-1].setContentAreaFilled(true);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
             }
         } else {
             
