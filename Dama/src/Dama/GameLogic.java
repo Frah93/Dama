@@ -75,7 +75,6 @@ public class GameLogic {
                             Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].setContentAreaFilled(true);
                                 Casellaorigin = pCasellaSelect;
                                 Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove];
-
                         }
                         if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getDama().getColore().equals(Dama.Colori.NULL) && 
                                 Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
@@ -357,7 +356,7 @@ public class GameLogic {
             //nel caso ho riselezionato la stessa casella
             if(Casellaorigin.getDama().getColore().equals(Dama.Colori.NULL)){
             //nel caso in cui sto schiacciando una casella che ho previsto per lo spostamento DI UNA CASELLA
-            }else if(pCasellaSelect.getDama().equals(Casellaswap1.getDama()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap1.getRiga()){
+            }else if(pCasellaSelect.getDama().equals(Casellaswap1.getDama())){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap1.getColonna()][Casellaswap1.getRiga()].
                         setDama(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getDama());
@@ -375,7 +374,7 @@ public class GameLogic {
                 //Scambio turni tra giocatori
                 CambiaTurno();
                 
-            } else if (pCasellaSelect.getDama().equals(Casellaswap2.getDama()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap2.getRiga()){
+            } else if (pCasellaSelect.getDama().equals(Casellaswap2.getDama())){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap2.getColonna()][Casellaswap2.getRiga()].
                         setDama(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getDama());
@@ -393,7 +392,7 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
-            }else if(pCasellaSelect.getDama().equals(Casellaswap3.getDama()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap3.getRiga()){
+            }else if(pCasellaSelect.getDama().equals(Casellaswap3.getDama())){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap3.getColonna()][Casellaswap3.getRiga()].
                         setDama(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getDama());
@@ -411,7 +410,7 @@ public class GameLogic {
                 //Scambio turni tra giocatori
                 CambiaTurno();
                 
-            } else if (pCasellaSelect.getDama().equals(Casellaswap4.getDama()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap4.getRiga()){
+            } else if (pCasellaSelect.getDama().equals(Casellaswap4.getDama())){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap4.getColonna()][Casellaswap4.getRiga()].
                         setDama(Board.scacchiera[Casellaorigin.getColonna()][Casellaorigin.getRiga()].getDama());
