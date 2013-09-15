@@ -16,7 +16,7 @@ public class Background extends JPanel {
     public Background(boolean choose) {
         this.setSize(800, 600);
         if (choose){
-            this.sfondoMenu = Resources.getImage("/Images/ExperimentalChessbaseChessBoard.png");
+            this.sfondoMenu = Resources.getImage("/Images/ChessBoard.png");
         }else{
             this.sfondoMenu = Resources.getImage("/Images/SfondoMenu.jpg");
         }
