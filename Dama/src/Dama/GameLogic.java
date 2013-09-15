@@ -53,7 +53,8 @@ public class GameLogic {
                         (pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NERO) && pCasellaSelect.getRiga()!=Board.scacchiera[0].length-1) ){
                     //Controlla se ho selezionato l'ultima pedina a sinistra
                     if(pCasellaSelect.getColonna()==0){
-                        if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getDama().getColore().equals(Dama.Colori.NULL) && 
+                                Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
                             //evidenzia le mosse ammissibili
                             Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].setContentAreaFilled(true);
                                 //oltre ad evidenziarla deve salvarla in memoria per poter accertare la previsione di una possibile mossa
@@ -62,19 +63,22 @@ public class GameLogic {
                         }
                     //Controlla se ho selezionato l'ultima pedina a destra
                     } else if(Board.scacchiera[0].length-1==pCasellaSelect.getColonna()){
-                        if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getDama().getColore().equals(Dama.Colori.NULL) && 
+                                Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
                             Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].setContentAreaFilled(true);
                                 Casellaorigin = pCasellaSelect;
                                 Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove];
                         }
                     } else {
-                        if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        if(Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getDama().getColore().equals(Dama.Colori.NULL) && 
+                                Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
                             Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove].setContentAreaFilled(true);
                                 Casellaorigin = pCasellaSelect;
                                 Casellaswap1 = Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+RilevaPedinaMove];
 
                         }
-                        if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
+                        if(Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getDama().getColore().equals(Dama.Colori.NULL) && 
+                                Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].getPedina().getColore().equals(Pedina.Colori.NULL)){
                             Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove].setContentAreaFilled(true);
                                 Casellaorigin = pCasellaSelect;
                                 Casellaswap2 = Board.scacchiera[pCasellaSelect.getColonna()-1][pCasellaSelect.getRiga()+RilevaPedinaMove];
