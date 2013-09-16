@@ -21,6 +21,7 @@ public class Regole extends JFrame{
 	this.dama = new JLabel( this.dama_image );
         this.dama.setSize(this.getSize());
         
+        //I tag html vengono utilizzati perche' il Jlabel e' a singola riga e non riconosce i new line (\n)
         this.regole = new JLabel("<html>Dama italiana <br/>" +
         "Le 10 regole per giocare <br/>" +
         "    La damiera si compone di 64 caselle alternate per colore, bianche e scure, e va posizionata con l'ultima casella in basso a destra di colore nero.<br/>" +
