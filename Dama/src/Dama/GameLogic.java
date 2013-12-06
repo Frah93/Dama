@@ -643,6 +643,12 @@ public class GameLogic {
         }
     }
     
+    public static void ReimpostaPartita(){
+        Board = new Scacchiera();
+        Board.initScacchiera(player1, player2);
+        activePlayer = player1;
+    }
+    
     public static void setActivePlayer(Giocatore pactivePlayer) {
         activePlayer = pactivePlayer;
     }

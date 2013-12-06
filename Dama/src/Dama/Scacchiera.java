@@ -37,6 +37,7 @@ public class Scacchiera extends JFrame{
                 if(JOptionPane.showConfirmDialog(we.getWindow(), "Sei sicuro di voler uscire") == JOptionPane.OK_OPTION){
                     setVisible(false);
                     dispose();
+                    GameLogic.ReimpostaPartita();
                     MainFrame.Menu.setVisible(true);
                 }
             }
@@ -151,7 +152,6 @@ public class Scacchiera extends JFrame{
         
     }
     
-    
     public boolean isCasellaNera(Casella pCasella){
         if (pCasella.getColore().equals(Scacchiera.Colori.NERO)){
             return true;
@@ -164,7 +164,4 @@ public class Scacchiera extends JFrame{
         setVisible(pSet);
     }
     
-    public String toString(){
-        return Colori.BIANCO.toString();
-    }
 }

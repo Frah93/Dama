@@ -6,7 +6,7 @@ import util.Resources;
 
 public class Background extends JPanel {
     
-    private Image SfondoMenuNew;
+    private final Image SfondoMenuNew;
     
     public Background(String locazione_immagine) {
         this.setSize(800, 600);
