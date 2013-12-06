@@ -4,6 +4,8 @@
  */
 package Dama;
 
+import java.awt.Color;
+import java.awt.Transparency;
 import javax.swing.JButton;
 
 /**
@@ -65,6 +67,6 @@ public class Casella extends JButton{
 
     public int getRiga() {
         return riga;
-    }
+    }    
     
 }

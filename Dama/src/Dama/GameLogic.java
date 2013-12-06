@@ -447,7 +447,7 @@ public class GameLogic {
                         DamaTarget = new Dama(Dama.Colori.BIANCO);
                     }
                 //controllo se sono sulla parte inferiore della scacchiera
-                if(pCasellaSelect.getRiga()==Board.scacchiera[0].length-1){
+                if(pCasellaSelect.getRiga()>=Board.scacchiera[0].length-2){
                     //sono nello spigolo inferiore destro
                     if(pCasellaSelect.getColonna()==Board.scacchiera.length-1){
                         if(Board.scacchiera[pCasellaSelect.getColonna()-2][pCasellaSelect.getRiga()-2].getDama().getColore().equals(Dama.Colori.NULL) && 
@@ -479,9 +479,9 @@ public class GameLogic {
                         }
                     }
                 //controlla se sono nella parte superiore della scacchiera
-                } else if(pCasellaSelect.getRiga()==0){
+                } else if(pCasellaSelect.getRiga()<=1){
                     //sono nello spigolo in alto a sinistra
-                    if(pCasellaSelect.getColonna()==0){
+                    if(pCasellaSelect.getColonna()==1){
                         if(Board.scacchiera[pCasellaSelect.getColonna()+2][pCasellaSelect.getRiga()+2].getDama().getColore().equals(Dama.Colori.NULL) && 
                                 Board.scacchiera[pCasellaSelect.getColonna()+2][pCasellaSelect.getRiga()+2].getPedina().getColore().equals(Pedina.Colori.NULL) &&
                                 Board.scacchiera[pCasellaSelect.getColonna()+1][pCasellaSelect.getRiga()+1].getDama().getColore().equals(DamaTarget.getColore()) && 
@@ -512,7 +512,7 @@ public class GameLogic {
                         }
                     }
                 //se sono troppo a sinistra
-                }else if(pCasellaSelect.getColonna()==0){
+                }else if(pCasellaSelect.getColonna()>=1){
                     if(pCasellaSelect.getRiga()!=Board.scacchiera.length-2){
                         if(Board.scacchiera[pCasellaSelect.getColonna()+2][pCasellaSelect.getRiga()+2].getDama().getColore().equals(Dama.Colori.NULL) && 
                                 Board.scacchiera[pCasellaSelect.getColonna()+2][pCasellaSelect.getRiga()+2].getPedina().getColore().equals(Pedina.Colori.NULL) &&
@@ -533,7 +533,7 @@ public class GameLogic {
                         Board.scacchiera[pCasellaSelect.getColonna()+2][pCasellaSelect.getRiga()-2].setContentAreaFilled(true);
                     }
                 //se sono troppo a destra
-                }else if(pCasellaSelect.getColonna()==Board.scacchiera.length-1){
+                }else if(pCasellaSelect.getColonna()>=Board.scacchiera.length-2){
                     //se sono troppo in alto
                     if(pCasellaSelect.getRiga()!=Board.scacchiera[0].length-2){
                         if(Board.scacchiera[pCasellaSelect.getColonna()-2][pCasellaSelect.getRiga()-2].getDama().getColore().equals(Dama.Colori.NULL) && 
