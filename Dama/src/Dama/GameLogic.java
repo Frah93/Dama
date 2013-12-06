@@ -40,7 +40,7 @@ public class GameLogic {
     }
     
     //Verifica quali mosse sono ammissibili nel movimento di una pedina
-    public static void ifPedinaCanMove(Casella pCasellaSelect){
+    public static void ifPedinaCanMove(Casella pCasellaSelect) throws MossaNonValidaException, MossaEffettuataException{
         //nel caso in cui premo una casella con pedina nera/bianca
         if(!pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NULL)){
             //Se ho selezionato una pedina del player active
@@ -88,7 +88,9 @@ public class GameLogic {
             }
             //Se ho selezionato una pedina avversaria
             } else {
-                JOptionPane.showMessageDialog(null, "Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                if (!pCasellaSelect.getPedina().getColore().equals(getActivePlayer().getPedina().getColore())){
+                    throw new MossaNonValidaException("Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                }
             }
         } else {
             //nel caso ho riselezionato la stessa casella
@@ -111,6 +113,7 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
                 
             } else if (pCasellaSelect.getPedina().equals(Casellaswap2.getPedina()) && Casellaorigin.getRiga()+RilevaPedinaMove==Casellaswap2.getRiga()){
                 //sposto la pedina nella casella successiva
@@ -131,12 +134,13 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
             }
         }
     }
     
     //Controllo se si puo' mangiare con una pedina<---
-    public static void ifPedinaCanEat(Casella pCasellaSelect){
+    public static void ifPedinaCanEat(Casella pCasellaSelect) throws MossaNonValidaException, MossaEffettuataException {
         //nel caso in cui premo una casella con pedina nera/bianca
         if(!pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NULL)){
             if(getActivePlayer().getPedina().getColore().equals(Pedina.Colori.BIANCO)){
@@ -192,7 +196,11 @@ public class GameLogic {
                         }
                     }
                 //nel caso in cui ho cliccato una pedina avversaria
-                } 
+                } else {
+                    if (!pCasellaSelect.getPedina().getColore().equals(getActivePlayer().getPedina().getColore())){
+                        throw new MossaNonValidaException("Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                    }
+                }
             
             }
         } else {
@@ -221,6 +229,7 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
                 
             } else if (pCasellaSelect.getPedina().equals(Casellaswap2.getPedina()) && 
                     Casellaorigin.getRiga()+RilevaPedinaEat==Casellaswap2.getRiga()){
@@ -244,12 +253,13 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
             }
         }
     }
     
     //Verifica quali mosse sono ammissibili nel movimento di una Dama
-    public static void ifDamaCanMove(Casella pCasellaSelect){
+    public static void ifDamaCanMove(Casella pCasellaSelect) throws MossaNonValidaException, MossaEffettuataException {
         //controlla se ho selezionato una dama
         if(!pCasellaSelect.getDama().getColore().equals(Dama.Colori.NULL)){
             if(pCasellaSelect.getDama().getColore().equals(activePlayer.getDama().getColore())){
@@ -351,7 +361,9 @@ public class GameLogic {
                     }
                 }
             } else {
-                //JOptionPane.showMessageDialog(null, "Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                if (!pCasellaSelect.getDama().getColore().equals(getActivePlayer().getDama().getColore())){
+                    throw new MossaNonValidaException("Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                }
             }
         //se nel caso procedo con la mossa successiva
         } else {
@@ -375,6 +387,7 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
                 
             } else if (pCasellaSelect.getDama().equals(Casellaswap2.getDama())){
                 //sposto la pedina nella casella successiva
@@ -394,6 +407,8 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
+                
             }else if(pCasellaSelect.getDama().equals(Casellaswap3.getDama())){
                 //sposto la pedina nella casella successiva
                 Board.scacchiera[Casellaswap3.getColonna()][Casellaswap3.getRiga()].
@@ -411,6 +426,7 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
                 
             } else if (pCasellaSelect.getDama().equals(Casellaswap4.getDama())){
                 //sposto la pedina nella casella successiva
@@ -430,12 +446,13 @@ public class GameLogic {
                 
                 //Scambio turni tra giocatori
                 CambiaTurno();
+                throw new MossaEffettuataException();
             }
         }
     }
     
     //Controllo se si puo' mangiare con una dama
-    public static void ifDamaCanEat(Casella pCasellaSelect){
+    public static void ifDamaCanEat(Casella pCasellaSelect) throws MossaNonValidaException, MossaEffettuataException {
         //nel caso in cui premo una casella con Dama nera/bianca
         if(!pCasellaSelect.getDama().getColore().equals(Dama.Colori.NULL)){
             if(pCasellaSelect.getDama().getColore().equals(activePlayer.getDama().getColore())){
@@ -591,7 +608,9 @@ public class GameLogic {
                     }
                 }
             } else {
-                //JOptionPane.showMessageDialog(null, "Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                if (!pCasellaSelect.getDama().getColore().equals(getActivePlayer().getDama().getColore())){
+                    throw new MossaNonValidaException("Tocca al giocatore con la pedina " + getActivePlayer().getPedina().getColore());
+                }
             }
         //nel caso procedo con la mossa successiva
         }else{
@@ -640,6 +659,14 @@ public class GameLogic {
             activePlayer = player2;
         } else {
             activePlayer = player1;
+        }
+    }
+    
+    public static void PulisciScacchiera(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Board.scacchiera[i][j].setContentAreaFilled(false);
+            }
         }
     }
     
