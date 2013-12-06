@@ -2,11 +2,10 @@ package Dama;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JOptionPane;
 
 public class Scacchiera extends JFrame{ 
     
@@ -30,7 +29,36 @@ public class Scacchiera extends JFrame{
     public Scacchiera() { 
         super();
         this.setSize(600,625);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowClosing(WindowEvent we) {
+                if(JOptionPane.showConfirmDialog(we.getWindow(), "Sei sicuro di voler uscire") == JOptionPane.OK_OPTION){
+                    setVisible(false);
+                    dispose();
+                    MainFrame.Menu.setVisible(true);
+                }
+            }
+            
+            @Override 
+            public void windowOpened(WindowEvent we) { }
+
+            @Override
+            public void windowClosed(WindowEvent we) { }
+
+            @Override
+            public void windowIconified(WindowEvent we) { }
+
+            @Override
+            public void windowDeiconified(WindowEvent we) { }
+
+            @Override
+            public void windowActivated(WindowEvent we) { }
+
+            @Override
+            public void windowDeactivated(WindowEvent we) { }
+        });
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
@@ -87,7 +115,7 @@ public class Scacchiera extends JFrame{
         //TODO metodo Move(Pedina, [i][j])
         //decide se posso spostare, se è una mossa vincente, se trasforma una dama, cambia turno
         
-        Background background = new Background(true);
+        Background background = new Background("/Images/ChessBoard.png");
         this.add(background);
         }
     

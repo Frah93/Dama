@@ -12,6 +12,8 @@ public class MainFrame extends JFrame {
     
     public MainFrame() {
      super();
+     //serve per togliere la decorazione della finestra di windows
+     this.setUndecorated(true);
      
      //instanziamo le regole
      this.Rule = new Regole();
@@ -33,7 +35,7 @@ public class MainFrame extends JFrame {
      //Creo i bottoni
      JButton btnGioca = new JButton();
      btnGioca.setText("Gioca");
-     btnGioca.setBounds(50, 500, 95, 30);
+     btnGioca.setBounds(50, 500, 100, 50);
      {
          btnGioca.addActionListener(new ActionListener() {
 
@@ -47,7 +49,7 @@ public class MainFrame extends JFrame {
      
      JButton btnEsci = new JButton();
      btnEsci.setText("Esci");
-     btnEsci.setBounds(630, 500, 95, 30);
+     btnEsci.setBounds(630, 500, 100, 50);
      {
          btnEsci.addActionListener(new ActionListener() {
 
@@ -60,7 +62,7 @@ public class MainFrame extends JFrame {
      
      JButton btnRegole = new JButton();
      btnRegole.setText("Regole");
-     btnRegole.setBounds(500, 500, 95, 30);
+     btnRegole.setBounds(330, 500, 100, 50);
      {
          btnRegole.addActionListener(new ActionListener() {
 
@@ -76,14 +78,15 @@ public class MainFrame extends JFrame {
     this.add(btnEsci);
     this.add(btnRegole);
      
-     Background background = new Background();
+     Background background = new Background("/Images/SfondoMenuNew.jpg");
      this.add(background);
      
      }
     
+    public static final MainFrame Menu = new MainFrame();
+    
     public static void main(String[] args){
-        
-        MainFrame Menu = new MainFrame();    
+         
         Menu.setVisible(true);
                
     }

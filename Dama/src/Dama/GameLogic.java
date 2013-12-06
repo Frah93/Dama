@@ -16,6 +16,7 @@ public class GameLogic {
     private static Pedina PedinaTarget;
     private static Dama DamaTarget;
     
+    //costruttore
     public GameLogic(Giocatore pPlayer1, Giocatore pPlayer2) {
         player1 = pPlayer1;
         player2 = pPlayer2;
@@ -139,8 +140,8 @@ public class GameLogic {
         //nel caso in cui premo una casella con pedina nera/bianca
         if(!pCasellaSelect.getPedina().getColore().equals(Pedina.Colori.NULL)){
             if(getActivePlayer().getPedina().getColore().equals(Pedina.Colori.BIANCO)){
-                        RilevaPedinaEat = -2;
-                        RilevaPedinaTearget = -1;
+                        RilevaPedinaEat = -2; // dove mi sposto dopo che ho mangiato
+                        RilevaPedinaTearget = -1; //quella che devo mangiare
                         PedinaTarget = new Pedina(Pedina.Colori.NERO);
                     } else {
                         RilevaPedinaEat = 2;
@@ -624,6 +625,11 @@ public class GameLogic {
             }
         }
     }
+    
+    //TODO ifDamaCanEatDama
+    //TODO metodo per contare quante pedine ci sono ancora, dopo ogni mossa. se una delle due è uguale a zero l'altra vince
+    
+    
     
     public void setGameBoardVisible(boolean pset){
         Board.Set_Visible(pset);
