@@ -86,22 +86,20 @@ public class Scacchiera extends JFrame{
 
                     @Override
                     public void actionPerformed(ActionEvent ae) {
+                        int Casella_riga = Character.getNumericValue(ae.getActionCommand().charAt(2));
+                        int Casella_colonna = Character.getNumericValue(ae.getActionCommand().charAt(0));
                         try {
                         //Controlli Pedina
                         //Controllo per la mossa
-                        GameLogic.ifPedinaCanMove(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
-                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        GameLogic.ifPedinaCanMove(scacchiera[Casella_colonna][Casella_riga]);
                         //controllo per la mangiata
-                        GameLogic.ifPedinaCanEat(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
-                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        GameLogic.ifPedinaCanEat(scacchiera[Casella_colonna][Casella_riga]);
 
                         //Controlli Dama
                         //Controllo per la mossa
-                        GameLogic.ifDamaCanMove(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
-                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        GameLogic.ifDamaCanMove(scacchiera[Casella_colonna][Casella_riga]);
                         //controllo per la mangiata
-                        GameLogic.ifDamaCanEat(scacchiera[Character.getNumericValue(ae.getActionCommand().charAt(0))]
-                                [Character.getNumericValue(ae.getActionCommand().charAt(2))]);
+                        GameLogic.ifDamaCanEat(scacchiera[Casella_colonna][Casella_riga]);
 
                         } catch (MossaNonValidaException ex ){
                             
